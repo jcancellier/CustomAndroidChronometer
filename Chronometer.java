@@ -9,7 +9,6 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
 import java.text.DecimalFormat;
 
 public class Chronometer extends TextView {
@@ -17,7 +16,6 @@ public class Chronometer extends TextView {
     private static final String TAG = "Chronometer";
 
     public interface OnChronometerTickListener {
-
         void onChronometerTick(Chronometer chronometer);
     }
 
@@ -41,7 +39,6 @@ public class Chronometer extends TextView {
 
     public Chronometer(Context context, AttributeSet attrs, int defStyle) {
         super (context, attrs, defStyle);
-
         init();
     }
 
@@ -122,7 +119,7 @@ public class Chronometer extends TextView {
 
         text += df.format(minutes) + ":";
         text += df.format(seconds) + ".";
-        text += df.format(milliseconds); //Integer.toString(milliseconds); original
+        text += df.format(milliseconds);
 
         setText(text);
     }
@@ -134,7 +131,7 @@ public class Chronometer extends TextView {
                 updateText(SystemClock.elapsedRealtime());
                 dispatchChronometerTick();
                 mHandler.sendMessageDelayed(Message.obtain(mHandler,
-                        TICK_WHAT), 0); //(,,100) original
+                        TICK_WHAT), 0);
             } else {
                 mHandler.removeMessages(TICK_WHAT);
             }
@@ -148,7 +145,7 @@ public class Chronometer extends TextView {
                 updateText(SystemClock.elapsedRealtime());
                 dispatchChronometerTick();
                 sendMessageDelayed(Message.obtain(this , TICK_WHAT),
-                        0); //(,,100) original
+                        0);
             }
         }
     };
@@ -164,4 +161,3 @@ public class Chronometer extends TextView {
     }
 
 }
-
